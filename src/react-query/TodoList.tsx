@@ -21,7 +21,6 @@ const TodoList = () => {
   });
 
   // if (error) return <p>{error}</p>;
-
   return (
     <ul className="list-group">
       {todos?.map((todo) => (
