@@ -2,8 +2,13 @@ import { useState } from "react";
 import usePosts from "../hooks/usePosts";
 
 const PostList = () => {
-  const [userId, setUserId] = useState<number>();
-  const { data: posts, error, isLoading } = usePosts(userId);
+  // const [userId, setUserId] = useState<number>();
+
+  const pageSize = 10; // can convert to useState and provide dropdown for user
+  const [page, setPage] = useState(1);
+
+  const { data: posts, error, isLoading } = usePosts({ page, pageSize });
+  // userId
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -11,7 +16,7 @@ const PostList = () => {
 
   return (
     <>
-      <select
+      {/* <select
         onChange={(event) => setUserId(parseInt(event.target.value))}
         value={userId}
         className="form-select mb-3"
@@ -20,7 +25,7 @@ const PostList = () => {
         <option value="1">User 1</option>
         <option value="2">User 2</option>
         <option value="3">User 3</option>
-      </select>
+      </select> */}
 
       <ul className="list-group">
         {posts?.map((post) => (
@@ -29,6 +34,21 @@ const PostList = () => {
           </li>
         ))}
       </ul>
+
+      <button
+        disabled={page === 1}
+        onClick={() => setPage(page - 1)}
+        className="btn btn-primary my-3"
+      >
+        Previous
+      </button>
+      {/* JSON placeholder doesn't provide total # of records ahead of time to know the number of pages to determine the last page */}
+      <button
+        onClick={() => setPage(page + 1)}
+        className="btn btn-primary my-3 ms-1"
+      >
+        Next
+      </button>
     </>
   );
 };

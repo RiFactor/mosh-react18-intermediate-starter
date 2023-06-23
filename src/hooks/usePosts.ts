@@ -8,7 +8,15 @@ interface Post {
   userId: number;
 }
 
-const usePosts = (userId: number | undefined) => {
+interface PostQuery {
+  page: number;
+  pageSize: number;
+}
+
+const usePosts = (
+  query: PostQuery
+  // userId: number | undefined
+) => {
   const getPosts = () => {
     return axios
       .get<Post[]>(
@@ -16,7 +24,9 @@ const usePosts = (userId: number | undefined) => {
         "https://jsonplaceholder.typicode.com/posts",
         {
           params: {
-            userId,
+            // userId,
+            _start: (query.page - 1) * query.pageSize,
+            _limit: query.pageSize,
           },
         }
       )
@@ -26,9 +36,11 @@ const usePosts = (userId: number | undefined) => {
   return useQuery<Post[], Error>({
     // users/1/posts
     // when the userId changes, the query is re-executed bc it is a param like dependency in useEffect
-    queryKey: userId ? ["users", userId, "posts"] : ["posts"],
+    queryKey: ["posts", query],
+    // userId ? ["users", userId, "posts"] : ["posts"],
     queryFn: getPosts,
     staleTime: 1 * 60 * 1000, // 1 minute
+    keepPreviousData: true,
   });
 };
 
