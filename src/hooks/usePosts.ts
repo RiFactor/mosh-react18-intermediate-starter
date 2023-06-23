@@ -18,6 +18,7 @@ const usePosts = () => {
   return useQuery<Post[], Error>({
     queryKey: ["posts"],
     queryFn: getPosts,
+    staleTime: 1 * 60 * 1000, // 1 minute
   });
 };
 
