@@ -11,7 +11,7 @@ const PostList = () => {
     data: posts,
     error,
     isLoading,
-  } = usePosts({ page, pageSize }, userId);
+  } = usePosts({ page, pageSize, userId });
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -22,7 +22,9 @@ const PostList = () => {
       <select
         onChange={(event) => {
           setPage(1);
-          setUserId(parseInt(event.target.value));
+          setUserId(
+            event.target.value !== "" ? parseInt(event.target.value) : undefined
+          );
         }}
         value={userId}
         className="form-select mb-3"

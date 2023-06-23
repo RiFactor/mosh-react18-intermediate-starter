@@ -8,8 +8,8 @@ function App() {
     <div>
       <h1>React Starter Project</h1>
       {/* <TodoList /> */}
-      {/* <PostList /> */}
-      <InfinitePostList />
+      <PostList />
+      {/* <InfinitePostList /> */}
     </div>
   );
 }
