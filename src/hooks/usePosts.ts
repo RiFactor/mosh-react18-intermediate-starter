@@ -11,12 +11,10 @@ interface Post {
 interface PostQuery {
   page: number;
   pageSize: number;
+  // userId: number; // QUESTION -- is there a neat way to include this in the query object
 }
 
-const usePosts = (
-  query: PostQuery
-  // userId: number | undefined
-) => {
+const usePosts = (query: PostQuery, userId: number | undefined) => {
   const getPosts = () => {
     return axios
       .get<Post[]>(
@@ -24,7 +22,7 @@ const usePosts = (
         "https://jsonplaceholder.typicode.com/posts",
         {
           params: {
-            // userId,
+            userId,
             _start: (query.page - 1) * query.pageSize,
             _limit: query.pageSize,
           },
@@ -36,8 +34,7 @@ const usePosts = (
   return useQuery<Post[], Error>({
     // users/1/posts
     // when the userId changes, the query is re-executed bc it is a param like dependency in useEffect
-    queryKey: ["posts", query],
-    // userId ? ["users", userId, "posts"] : ["posts"],
+    queryKey: userId ? ["users", userId, "posts", query] : ["posts", query],
     queryFn: getPosts,
     staleTime: 1 * 60 * 1000, // 1 minute
     keepPreviousData: true,

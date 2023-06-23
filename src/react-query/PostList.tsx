@@ -2,13 +2,16 @@ import { useState } from "react";
 import usePosts from "../hooks/usePosts";
 
 const PostList = () => {
-  // const [userId, setUserId] = useState<number>();
+  const [userId, setUserId] = useState<number>();
 
   const pageSize = 10; // can convert to useState and provide dropdown for user
   const [page, setPage] = useState(1);
 
-  const { data: posts, error, isLoading } = usePosts({ page, pageSize });
-  // userId
+  const {
+    data: posts,
+    error,
+    isLoading,
+  } = usePosts({ page, pageSize }, userId);
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -16,8 +19,11 @@ const PostList = () => {
 
   return (
     <>
-      {/* <select
-        onChange={(event) => setUserId(parseInt(event.target.value))}
+      <select
+        onChange={(event) => {
+          setPage(1);
+          setUserId(parseInt(event.target.value));
+        }}
         value={userId}
         className="form-select mb-3"
       >
@@ -25,7 +31,7 @@ const PostList = () => {
         <option value="1">User 1</option>
         <option value="2">User 2</option>
         <option value="3">User 3</option>
-      </select> */}
+      </select>
 
       <ul className="list-group">
         {posts?.map((post) => (
