@@ -1,17 +1,14 @@
 import { useState } from "react";
+import React from "react";
 import useInfinitePosts from "../hooks/useInfinitePosts";
 
 const InfinitePostList = () => {
   const [userId, setUserId] = useState<number>();
 
   const pageSize = 10; // can convert to useState and provide dropdown for user
-  const [page, setPage] = useState(1);
 
-  const {
-    data: posts,
-    error,
-    isLoading,
-  } = useInfinitePosts({ page, pageSize }, userId);
+  const { data, error, isLoading, fetchNextPage, isFetchingNextPage } =
+    useInfinitePosts({ pageSize }, userId);
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -21,7 +18,6 @@ const InfinitePostList = () => {
     <>
       <select
         onChange={(event) => {
-          setPage(1);
           setUserId(parseInt(event.target.value));
         }}
         value={userId}
@@ -34,26 +30,24 @@ const InfinitePostList = () => {
       </select>
 
       <ul className="list-group">
-        {posts?.map((post) => (
-          <li key={post.id} className="list-group-item">
-            {post.title}
-          </li>
+        {data.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.map((post) => (
+              <li key={post.id} className="list-group-item">
+                {post.title}
+              </li>
+            ))}
+          </React.Fragment>
         ))}
       </ul>
 
-      <button
-        disabled={page === 1}
-        onClick={() => setPage(page - 1)}
-        className="btn btn-primary my-3"
-      >
-        Previous
-      </button>
       {/* JSON placeholder doesn't provide total # of records ahead of time to know the number of pages to determine the last page */}
       <button
-        onClick={() => setPage(page + 1)}
+        onClick={() => fetchNextPage()}
+        disabled={isFetchingNextPage}
         className="btn btn-primary my-3 ms-1"
       >
-        Next
+        {isFetchingNextPage ? "Loading... " : "Load More"}
       </button>
     </>
   );
