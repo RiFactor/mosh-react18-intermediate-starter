@@ -18,7 +18,9 @@ const InfinitePostList = () => {
     <>
       <select
         onChange={(event) => {
-          setUserId(parseInt(event.target.value));
+          setUserId(
+            event.target.value !== "" ? parseInt(event.target.value) : undefined
+          );
         }}
         value={userId}
         className="form-select mb-3"
