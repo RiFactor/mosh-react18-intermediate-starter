@@ -10,6 +10,7 @@ interface AddTodoContext {
 const TodoForm = () => {
   const queryClient = useQueryClient();
 
+  // "variables" in <> are what you pass in
   const addTodo = useMutation<Todo, Error, Todo, AddTodoContext>({
     mutationFn: (todo: Todo) => {
       // Question -- do I want this to be an async fn?
