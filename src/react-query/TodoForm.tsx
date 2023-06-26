@@ -1,9 +1,11 @@
 import { useRef } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { Todo } from "../hooks/useTodos";
 
 const TodoForm = () => {
+  const queryClient = useQueryClient();
+
   const addTodo = useMutation({
     mutationFn: (todo: Todo) => {
       // Question -- do I want this to be an async fn?
@@ -12,7 +14,12 @@ const TodoForm = () => {
         .then((res) => res.data);
     },
     // onSucess, onError (toast notification), onSettled (either outcome)
-    onSuccess: (savedTodo, newTodo) => console.log(savedTodo),
+    onSuccess: (savedTodo, newTodo) => {
+      // invalidate the Cache: won't work for JSON placeholder b/c a fake API
+      queryClient.invalidateQueries({
+        queryKey: ["todos"],
+      });
+    },
   });
 
   const ref = useRef<HTMLInputElement>(null);
