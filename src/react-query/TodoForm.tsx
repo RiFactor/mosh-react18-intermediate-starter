@@ -15,10 +15,15 @@ const TodoForm = () => {
     },
     // onSucess, onError (toast notification), onSettled (either outcome)
     onSuccess: (savedTodo, newTodo) => {
-      // invalidate the Cache: won't work for JSON placeholder b/c a fake API
-      queryClient.invalidateQueries({
-        queryKey: ["todos"],
-      });
+      // APPROACH 1: invalidate the Cache: won't work for JSON placeholder b/c a fake API
+      // queryClient.invalidateQueries({
+      //   queryKey: ["todos"]
+      // });
+      // APPROACH 2: update cache data
+      queryClient.setQueryData<Todo[]>(["todos"], (todos) => [
+        savedTodo,
+        ...(todos || []),
+      ]);
     },
   });
 
