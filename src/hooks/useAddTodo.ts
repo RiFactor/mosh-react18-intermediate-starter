@@ -15,7 +15,7 @@ const useAddTodo = (addTodo: () => void) => {
     mutationFn: (todo: Todo) => {
       // Question -- do I want this to be an async fn?
       return axios
-        .post<Todo>("https://jsonplaceholder.typicode.com/posts", todo)
+        .post<Todo>("https://jsonplaceholder.typicode.com/todos", todo)
         .then((res) => res.data);
     },
     onMutate: (newTodo: Todo) => {
