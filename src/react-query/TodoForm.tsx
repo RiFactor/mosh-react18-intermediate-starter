@@ -24,6 +24,9 @@ const TodoForm = () => {
         savedTodo,
         ...(todos || []),
       ]);
+      if (ref.current) {
+        ref.current.value = "";
+      }
     },
   });
 
@@ -55,9 +58,10 @@ const TodoForm = () => {
         <div className="col">
           <button
             // disabled={!ref.current || !ref.current.value}
+            disabled={addTodo.isLoading}
             className="btn btn-primary"
           >
-            Add
+            {addTodo.isLoading ? "Adding..." : "Add"}
           </button>
         </div>
       </form>
