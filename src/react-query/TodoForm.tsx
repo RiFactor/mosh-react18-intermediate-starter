@@ -3,15 +3,32 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { Todo } from "../hooks/useTodos";
 
+interface AddTodoContext {
+  previousTodos: Todo[];
+}
+
 const TodoForm = () => {
   const queryClient = useQueryClient();
 
-  const addTodo = useMutation<Todo, Error, Todo>({
+  const addTodo = useMutation<Todo, Error, Todo, AddTodoContext>({
     mutationFn: (todo: Todo) => {
       // Question -- do I want this to be an async fn?
       return axios
         .post<Todo>("https://jsonplaceholder.typicode.com/posts", todo)
         .then((res) => res.data);
+    },
+    onMutate: (newTodo: Todo) => {
+      const previousTodos = queryClient.getQueryData<Todo[]>(["todos"]) || [];
+      // APPROACH 2: update cache data
+      queryClient.setQueryData<Todo[]>(["todos"], (todos) => [
+        newTodo,
+        ...(todos || []),
+      ]);
+      if (ref.current) {
+        ref.current.value = "";
+      }
+
+      return { previousTodos };
     },
     // onSucess, onError (toast notification), onSettled (either outcome)
     onSuccess: (savedTodo, newTodo) => {
@@ -19,14 +36,15 @@ const TodoForm = () => {
       // queryClient.invalidateQueries({
       //   queryKey: ["todos"]
       // });
-      // APPROACH 2: update cache data
-      queryClient.setQueryData<Todo[]>(["todos"], (todos) => [
-        savedTodo,
-        ...(todos || []),
-      ]);
-      if (ref.current) {
-        ref.current.value = "";
-      }
+      queryClient.setQueryData<Todo[]>(["todos"], (todos) =>
+        todos?.map((todo) => {
+          return todo === newTodo ? savedTodo : todo;
+        })
+      );
+    },
+    onError: (error, newTodo, context) => {
+      if (!context) return;
+      queryClient.setQueryData<Todo[]>(["todos"], context.previousTodos);
     },
   });
 
