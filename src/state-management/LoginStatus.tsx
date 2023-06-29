@@ -1,8 +1,8 @@
-import { useReducer, useState } from "react";
-import loginReducer from "./reducers/loginReducer";
+import { useReducer } from "react";
+import authReducer from "./reducers/authReducer";
 
 const LoginStatus = () => {
-  const [user, dispatch] = useReducer(loginReducer, "");
+  const [user, dispatch] = useReducer(authReducer, "");
 
   if (user)
     return (
@@ -17,7 +17,7 @@ const LoginStatus = () => {
     );
   return (
     <div>
-      <a onClick={() => dispatch({ type: "Log In" })} href="#">
+      <a onClick={() => dispatch({ type: "Log In", username: "Ri" })} href="#">
         Login
       </a>
     </div>
