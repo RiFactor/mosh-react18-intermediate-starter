@@ -1,19 +1,24 @@
-import { useReducer, useState } from "react";
-import taskReducer, { Task } from "./reducers/taskReducer";
+import { useReducer } from "react";
+import taskReducer from "./reducers/taskReducer";
 
 const TaskList = () => {
-  const [value, dispatch] = useReducer(taskReducer, []);
+  const [tasks, dispatch] = useReducer(taskReducer, []);
 
   return (
     <>
       <button
-        onClick={() => dispatch({ type: "Add" })}
+        onClick={() =>
+          dispatch({
+            type: "Add",
+            task: { id: Date.now(), title: "Title" + Date.now() },
+          })
+        }
         className="btn btn-primary my-3"
       >
         Add Task
       </button>
       <ul className="list-group">
-        {value.map((task) => (
+        {tasks.map((task) => (
           <li
             key={task.id}
             className="list-group-item d-flex justify-content-between align-items-center"
@@ -21,7 +26,7 @@ const TaskList = () => {
             <span className="flex-grow-1">{task.title}</span>
             <button
               className="btn btn-outline-danger"
-              onClick={() => dispatch({ type: "Delete", id: task.id })}
+              onClick={() => dispatch({ type: "Delete", taskId: task.id })}
             >
               Delete
             </button>
