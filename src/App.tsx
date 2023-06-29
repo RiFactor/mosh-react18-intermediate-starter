@@ -5,6 +5,7 @@ import InfinitePostList from "./react-query/InfinitePostList";
 import TodoForm from "./react-query/TodoForm";
 import Counter from "./state-management/Counter";
 import TaskList from "./state-management/TaskList";
+import LoginStatus from "./state-management/LoginStatus";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <br />
       <h4>Global State Management</h4>
       {/* <Counter /> */}
-      <TaskList />
+      {/* <TaskList /> */}
+      <LoginStatus />
       <br />
       <h4>Fetching and Updating Data with React Query</h4>
       {/* <TodoForm />
