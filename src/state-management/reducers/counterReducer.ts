@@ -3,13 +3,13 @@ interface Action {
 }
 
 const counterReducer = (state: number, action: Action): number => {
-  if (action === "Increment") {
+  if (action.type === "Increment") {
     return state + 1;
   }
-  if (action === "Reset") {
+  if (action.type === "Reset") {
     return 0;
   }
-  return state;
+  return state; // throw new Error("Action not supported"); // not necessary w/ TS
 };
 
 export default counterReducer;
