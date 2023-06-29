@@ -35,7 +35,7 @@ const useInfinitePosts = (query: PostQuery, userId: number | undefined) => {
     // when the userId changes, the query is re-executed bc it is a param like dependency in useEffect
     queryKey: userId ? ["users", userId, "posts", query] : ["posts", query],
     queryFn: getPosts,
-    staleTime: 1 * 60 * 1000, // 1 minute
+    staleTime: 24 * 60 * 60 * 1000, // 24 hrs
     keepPreviousData: true,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length > 0 // empty array
