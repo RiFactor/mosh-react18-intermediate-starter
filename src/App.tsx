@@ -4,16 +4,18 @@ import TodoList from "./react-query/TodoList";
 import InfinitePostList from "./react-query/InfinitePostList";
 import TodoForm from "./react-query/TodoForm";
 import Counter from "./state-management/Counter";
+import TaskList from "./state-management/TaskList";
 
 function App() {
   return (
     <div>
       <h1>React Starter Project</h1>
       <br />
-      <h2>Global State Management</h2>
-      <Counter />
+      <h4>Global State Management</h4>
+      {/* <Counter /> */}
+      <TaskList />
       <br />
-      <h2>Fetching and Updating Data with React Query</h2>
+      <h4>Fetching and Updating Data with React Query</h4>
       {/* <TodoForm />
       <TodoList /> */}
       {/* <PostList /> */}
