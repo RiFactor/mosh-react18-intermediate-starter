@@ -11,20 +11,26 @@ import { useReducer } from "react";
 import taskReducer from "./state-management/reducers/taskReducer";
 import TasksContext from "./state-management/contexts/tasksContext";
 import HomePage from "./state-management/HomePage";
+import AuthContext from "./state-management/contexts/authContext";
+import authReducer from "./state-management/reducers/authReducer";
 
 function App() {
-  const [tasks, dispatch] = useReducer(taskReducer, []);
+  const [tasks, tasksDispatch] = useReducer(taskReducer, []);
+  const [user, authDispatch] = useReducer(authReducer, "");
 
   return (
     <div>
       <h1>React Starter Project</h1>
       <br />
       <h4>Global State Management</h4>
-      <TasksContext.Provider value={{ tasks, dispatch }}>
-        <NavBar />
-        {/* the homepage contains the tasks list component */}
-        <HomePage />
-      </TasksContext.Provider>
+      <AuthContext.Provider value={{ user, dispatch: authDispatch }}>
+        <TasksContext.Provider value={{ tasks, dispatch: tasksDispatch }}>
+          <NavBar />
+          {/* the homepage contains the tasks list component */}
+          <HomePage />
+        </TasksContext.Provider>
+      </AuthContext.Provider>
+
       {/* <Counter /> */}
       {/* <LoginStatus />
       <br />
