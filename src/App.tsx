@@ -14,21 +14,20 @@ import HomePage from "./state-management/HomePage";
 import AuthContext from "./state-management/contexts/authContext";
 import authReducer from "./state-management/reducers/authReducer";
 import AuthProvider from "./state-management/AuthProvider";
+import TaskProvider from "./state-management/TaskProvider";
 
 function App() {
-  const [tasks, tasksDispatch] = useReducer(taskReducer, []);
-
   return (
     <div>
       <h1>React Starter Project</h1>
       <br />
       <h4>Global State Management</h4>
       <AuthProvider>
-        <TasksContext.Provider value={{ tasks, dispatch: tasksDispatch }}>
+        <TaskProvider>
           <NavBar />
           {/* the homepage contains the tasks list component */}
           <HomePage />
-        </TasksContext.Provider>
+        </TaskProvider>
       </AuthProvider>
 
       {/* <Counter /> */}
