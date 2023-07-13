@@ -3,7 +3,7 @@ import { TAuthAction } from "../reducers/authReducer";
 import React from "react";
 
 interface IAuthContextType {
-  user: string;
+  user: string; // {id: , username:, ...}
   dispatch: Dispatch<TAuthAction>;
 }
 
