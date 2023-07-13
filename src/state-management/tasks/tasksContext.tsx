@@ -1,5 +1,5 @@
 import React, { Dispatch } from "react";
-import { ITask, TTaskAction } from "../reducers/taskReducer";
+import { ITask, TTaskAction } from "./TasksProvider";
 
 //obj transported using React Context
 interface ITasksContextType {
