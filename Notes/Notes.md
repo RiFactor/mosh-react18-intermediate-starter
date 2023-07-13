@@ -14,7 +14,7 @@
 
 Folders:
 hooks, reducers, context
-When project become more complicated: separate into modules e.g. counter, tasks
+When project become more complicated: separate into independent modules / functional areas e.g. counter, tasks
 
 Keyboard:
 Option, shift, Fn + F12 -> find all references
