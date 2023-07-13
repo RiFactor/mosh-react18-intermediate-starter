@@ -23,3 +23,47 @@ Option + Cmd + arrow: navigate tabs
 Checks:
 run app
 and Cmd + Shift + P: build: npm build
+
+### Splitting Context for Efficiency
+
+![Alt text](image-4.png)
+
+Unnecessary renders if contexts are combined:
+![Alt text](image-5.png)
+
+### When to use Context
+
+Best to split context to avoid unnecessary re-renders
+![Alt text](image-3.png)
+real-world, tasks would be in BED
+
+![Alt text](image-1.png)
+
+If splitting up state doesn't make sense but deal with unnecessary renders, then use a library
+![Alt text](image-2.png)
+
+### Context vs. Redux
+
+Context doesn't have a way to store and update data but does prevent 'prop drilling'
+
+Does context replace redux
+![Alt text](image-6.png)
+
+Redux + Dev Tools
+![Alt text](image-7.png)
+"give a fool a hammer and they will treat everything like a nail"
+Don't think about tools as solutions
+
+over focus on tools and features -> distracted from solution required
+![Alt text](image-8.png)
+
+Understand problems ->
+
+redux complex - not necessary
+![Alt text](image-9.png)
+
+React Query simpler
+![Alt text](image-10.png)
+
+Zustand for Client state -> mgmt tool last resort
+![Alt text](image-11.png)
