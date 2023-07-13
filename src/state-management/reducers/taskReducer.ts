@@ -22,7 +22,7 @@ const taskReducer = (tasks: ITask[], action: TTaskAction): ITask[] => {
     case "Delete":
       return tasks.filter((t) => t.id !== action.taskId);
     default:
-      return tasks; // Question -- should I include a default case, Mosh didn't
+      return tasks; // Question TS - unclear- should I include a default case, Mosh didn't
   }
 };
 

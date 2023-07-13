@@ -6,7 +6,7 @@ interface ILogOutAction {
   type: "Log Out";
 }
 
-type TAuthAction = ILogInAction | ILogOutAction;
+export type TAuthAction = ILogInAction | ILogOutAction;
 
 const authReducer = (user: string, action: TAuthAction): string => {
   if (action.type === "Log In") return action.username;
