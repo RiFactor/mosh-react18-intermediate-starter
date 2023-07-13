@@ -13,8 +13,13 @@
 3. useContext hook to access
 
 Folders:
-hooks, reducers, context or separate modules e.g. counter, tasks
+hooks, reducers, context
+When project become more complicated: separate into modules e.g. counter, tasks
 
 Keyboard:
 Option, shift, Fn + F12 -> find all references
 Option + Cmd + arrow: navigate tabs
+
+Checks:
+run app
+and Cmd + Shift + P: build: npm build
