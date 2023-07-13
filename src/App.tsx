@@ -4,7 +4,7 @@ import TodoList from "./react-query/TodoList";
 import InfinitePostList from "./react-query/InfinitePostList";
 import TodoForm from "./react-query/TodoForm";
 import Counter from "./state-management/Counter";
-import TaskList from "./state-management/TaskList";
+import TasksList from "./state-management/TasksList";
 import LoginStatus from "./state-management/LoginStatus";
 import NavBar from "./state-management/NavBar";
 import { useReducer } from "react";
@@ -14,7 +14,7 @@ import HomePage from "./state-management/HomePage";
 import AuthContext from "./state-management/contexts/authContext";
 import authReducer from "./state-management/reducers/authReducer";
 import AuthProvider from "./state-management/AuthProvider";
-import TaskProvider from "./state-management/TaskProvider";
+import TasksProvider from "./state-management/TasksProvider";
 
 function App() {
   return (
@@ -23,11 +23,11 @@ function App() {
       <br />
       <h4>Global State Management</h4>
       <AuthProvider>
-        <TaskProvider>
+        <TasksProvider>
           <NavBar />
           {/* the homepage contains the tasks list component */}
           <HomePage />
-        </TaskProvider>
+        </TasksProvider>
       </AuthProvider>
 
       {/* <Counter /> */}

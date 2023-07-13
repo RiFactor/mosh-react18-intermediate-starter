@@ -6,14 +6,14 @@ interface IProps {
   children: ReactNode;
 }
 
-const TaskProvider = ({ children }: IProps) => {
-  const [tasks, tasksDispatch] = useReducer(taskReducer, []);
+const TasksProvider = ({ children }: IProps) => {
+  const [tasks, dispatch] = useReducer(taskReducer, []);
 
   return (
-    <TasksContext.Provider value={{ tasks, dispatch: tasksDispatch }}>
+    <TasksContext.Provider value={{ tasks, dispatch }}>
       {children}
     </TasksContext.Provider>
   );
 };
 
-export default TaskProvider;
+export default TasksProvider;
