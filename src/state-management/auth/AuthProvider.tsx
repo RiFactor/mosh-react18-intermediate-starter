@@ -1,3 +1,6 @@
+import React, { ReactNode, useReducer } from "react";
+import AuthContext from "./authContext";
+
 interface ILogInAction {
   type: "Log In";
   username: string;
@@ -14,4 +17,17 @@ const authReducer = (user: string, action: TAuthAction): string => {
   return user;
 };
 
-export default authReducer;
+interface IProps {
+  children: ReactNode;
+}
+
+const AuthProvider = ({ children }: IProps) => {
+  const [user, authDispatch] = useReducer(authReducer, "");
+  return (
+    <AuthContext.Provider value={{ user, dispatch: authDispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthProvider;

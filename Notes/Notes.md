@@ -11,3 +11,10 @@
 1. Lift state to closest parent
 2. Create context to transport data (state, dispatch) & wrap component tree w/ provider for same data or st else
 3. useContext hook to access
+
+Folders:
+hooks, reducers, context or separate modules e.g. counter, tasks
+
+Keyboard:
+Option, shift, Fn + F12 -> find all references
+Option + Cmd + arrow: navigate tabs
