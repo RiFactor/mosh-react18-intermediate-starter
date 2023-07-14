@@ -1,5 +1,6 @@
 import "./App.css";
 import AuthProvider from "./state-management/auth/AuthProvider";
+import Counter from "./state-management/counter/Counter";
 import HomePage from "./state-management/HomePage";
 import NavBar from "./state-management/NavBar";
 import { TasksProvider } from "./state-management/tasks";
@@ -12,13 +13,13 @@ function App() {
       <h4>Global State Management</h4>
       <AuthProvider>
         <TasksProvider>
+          <Counter />
           <NavBar />
           {/* the homepage contains the tasks list component */}
           <HomePage />
         </TasksProvider>
       </AuthProvider>
 
-      {/* <Counter /> */}
       {/* <LoginStatus />
       <br />
       <h4>Fetching and Updating Data with React Query</h4>
