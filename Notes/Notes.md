@@ -81,3 +81,6 @@ Params are strings so need to parse to an int when required
 call inside event handler or effect only
 
 Error logging service e.g. Sentry
+
+Learnt
+![Alt text](image-12.png)
