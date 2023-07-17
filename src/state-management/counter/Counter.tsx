@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import useCounterStore from "./store";
+import useCounterStore from "../../store";
 
 interface Action {
   type: "Increment" | "Reset";
