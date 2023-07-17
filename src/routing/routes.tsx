@@ -12,9 +12,12 @@ const router = createBrowserRouter([
     children: [
       // children's paths don't need '/' before but <Link to="/users" /> does
       { index: true, element: <HomePage /> }, // path: "" // either work
-      { path: "users", element: <UserListPage /> },
+      {
+        path: "users",
+        element: <UserListPage />,
+        children: [{ path: ":id", element: <UserDetailPage /> }],
+      },
       { path: "contact", element: <ContactPage /> },
-      { path: "users/:id", element: <UserDetailPage /> },
     ],
   },
 ]);
