@@ -10,6 +10,14 @@ const UserPage = () => {
       <div className="col">
         <Outlet />
       </div>
+      {/* Question -- thought that this would make the error page component display, or does it need to be an entire page error? */}
+      <button
+        onClick={() => {
+          throw new Error("something failed");
+        }}
+      >
+        Error
+      </button>
     </div>
   );
 };

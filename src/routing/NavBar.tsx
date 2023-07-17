@@ -28,6 +28,11 @@ const NavBar = () => {
                 Users
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/contact" className="nav-link">
+                Contacts
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

@@ -79,3 +79,5 @@ Params are strings so need to parse to an int when required
 
 'setSearchParams' has a side effect, component shoudl be pure
 call inside event handler or effect only
+
+Error logging service e.g. Sentry
