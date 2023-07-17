@@ -74,3 +74,8 @@ Zustand for Client state -> mgmt tool last resort
 <a href="/users">Users</a> // on the network tab this will cause a full page reload, not good
 <Link to="/users">Users</Link> // no repeated requests b/c content already shipped, so don't need to return to server
 ```
+
+Params are strings so need to parse to an int when required
+
+'setSearchParams' has a side effect, component shoudl be pure
+call inside event handler or effect only
