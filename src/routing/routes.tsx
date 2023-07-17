@@ -3,8 +3,9 @@ import ContactPage from "./ContactPage";
 import HomePage from "./HomePage";
 import Layout from "./Layout";
 import UserDetail from "./users/UserDetail";
-import UserPage from "./users/UserPage";
+import UsersPage from "./users/UsersPage";
 import ErrorPage from "./ErrorPage";
+import LoginPage from "./LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -14,9 +15,10 @@ const router = createBrowserRouter([
     children: [
       // children's paths don't need '/' before but <Link to="/users" /> does
       { index: true, element: <HomePage /> }, // path: "" // either work
+      { path: "login", element: <LoginPage /> },
       {
         path: "users",
-        element: <UserPage />,
+        element: <UsersPage />,
         children: [{ path: ":id", element: <UserDetail /> }],
       },
       { path: "contact", element: <ContactPage /> },
