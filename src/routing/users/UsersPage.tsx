@@ -3,12 +3,6 @@ import UserList from "./UserList";
 import useAuth from "../hooks/useAuth";
 
 const UsersPage = () => {
-  const { user } = useAuth();
-
-  if (!user)
-    // navigate fn will update browser url ergo side effect, won't be pure component in render phase
-    return <Navigate to="/login" />;
-
   return (
     <div className="row">
       <div className="col">

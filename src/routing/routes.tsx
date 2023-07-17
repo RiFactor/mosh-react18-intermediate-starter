@@ -6,9 +6,11 @@ import UserDetail from "./users/UserDetail";
 import UsersPage from "./users/UsersPage";
 import ErrorPage from "./ErrorPage";
 import LoginPage from "./LoginPage";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
+    // root route
     path: "/",
     element: <Layout />,
     errorElement: <ErrorPage />,
@@ -16,12 +18,18 @@ const router = createBrowserRouter([
       // children's paths don't need '/' before but <Link to="/users" /> does
       { index: true, element: <HomePage /> }, // path: "" // either work
       { path: "login", element: <LoginPage /> },
+      { path: "contact", element: <ContactPage /> },
+    ],
+  },
+  {
+    // layout route: group routes to enforce layouts or business rules
+    element: <PrivateRoutes />,
+    children: [
       {
         path: "users",
         element: <UsersPage />,
         children: [{ path: ":id", element: <UserDetail /> }],
       },
-      { path: "contact", element: <ContactPage /> },
     ],
   },
 ]);
