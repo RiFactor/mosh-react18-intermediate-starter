@@ -67,3 +67,10 @@ React Query simpler
 
 Zustand for Client state -> mgmt tool last resort
 ![Alt text](image-11.png)
+
+## Routing
+
+```typescript
+<a href="/users">Users</a> // on the network tab this will cause a full page reload, not good
+<Link to="/users">Users</Link> // no repeated requests b/c content already shipped, so don't need to return to server
+```
