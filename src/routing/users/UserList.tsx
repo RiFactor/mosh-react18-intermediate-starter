@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
-const UserListPage = () => {
+const UserList = () => {
   const users = [
     { id: 1, name: "Mosh" },
     { id: 2, name: "John" },
@@ -11,14 +11,13 @@ const UserListPage = () => {
       <ul className="list-group">
         {users.map((user) => (
           <li className="list-group-item" key={user.id}>
-            {/*  Answered /users/:id, for continuation, not user */}
+            {/*  Answered: /users/:id, for continuation, not user */}
             <Link to={`/users/${user.id}`}>{user.name}</Link>
           </li>
         ))}
       </ul>
-      <Outlet />
     </div>
   );
 };
 
-export default UserListPage;
+export default UserList;
