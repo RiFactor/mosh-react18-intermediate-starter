@@ -11,7 +11,7 @@ import PrivateRoutes from "./PrivateRoutes";
 const router = createBrowserRouter([
   {
     // root route
-    path: "/",
+    path: "/", // Question: Mosh notes show this without a path, is this correct (followed tutorial)
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
